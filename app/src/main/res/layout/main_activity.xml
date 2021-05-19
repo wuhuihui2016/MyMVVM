@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <!-- 导入引用的外部包 -->
+        <import type="android.text.TextUtils" />
+        <import type="com.example.mymvvm.bean.User" />
+        <import type="java.util.Map" />
+        <import type="java.util.List" />
+
+        <!-- 定义变量名 -->
+        <variable name="user" type="User" />
+        <variable name="buttonname" type="String" />
+        <variable name="listbutton" type="String" />
+        <variable name="eventlistener" type="com.example.mymvvm.activity.MainActivity.EventListener" />
+        <!-- 在""特殊符号需要转义，<为&gt;，>为&gt;，否则报错-->
+        <variable name="list" type="List&lt;String&gt;" />
+        <variable name="map" type="Map&lt;String, Integer&gt;" />
+        <variable name="index" type="int" />
+        <variable name="key" type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- 布局引入1，绑定变量user，使用相同类型变量user，由于<variable name...相同，复用user-->
+        <include
+            layout="@layout/layout_include"
+            bind:user="@{user}"/>
+
+        <!-- 绑定点击事件-->
+        <Button
+            android:id="@+id/age_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="@{eventlistener::ageBtnonClik}"
+            android:text="@{buttonname}" />
+
+        <!-- 布局引入2，如果需要使用相同类型变量User，需要定义不同的<variable name...否则复用以上user-->
+        <include
+            android:id="@+id/include_item_layout"
+            layout="@layout/layout_item"/>
+
+        <Button
+            android:id="@+id/list_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="长按查看列表"
+            android:onLongClick="@{eventlistener::onLongClick}"/>
+
+        <!-- 集合变量-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="集合变量"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_list_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{list[index]}"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_map_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(map[key])}"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+</layout>
