@@ -5,7 +5,7 @@
     <data>
         <import type="android.text.TextUtils"/>
         <import type="android.view.View"/>
-        <import type="com.example.mymvvm.bean.User"/>
+        <import type="com.whh.mymvvm.bean.User"/>
         <variable name="user" type="User" />
     </data>
 
@@ -19,7 +19,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{TextUtils.isEmpty(user.name) ? `includeUser` : user.name}" />
+            android:text="@{TextUtils.isEmpty(user.name) ? `includeUser` : user.name}"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/age_textView"
@@ -27,7 +28,8 @@
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(user.age)}"
             android:visibility="@{user.age > 0 ? View.VISIBLE : View.GONE}"
-            tools:ignore="MissingConstraints"/>
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 

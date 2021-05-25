@@ -1,4 +1,4 @@
-package com.example.mymvvm.widget;
+package com.whh.mymvvm.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * 自定义RecycleView分割线
+ * author:wuhuihui 2021.05.19
+ * desc:自定义RecycleView分割线
  */
 public class RecycleViewDivider extends RecyclerView.ItemDecoration {
 

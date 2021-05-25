@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.example.mymvvm.adapter.MyRecyclerViewAdapter"/>
+        <import type="com.whh.mymvvm.adapter.UserAdapter"/>
         <variable name="addbutton" type="String" />
-        <variable name="adapter" type="MyRecyclerViewAdapter" />
+        <variable name="adapter" type="com.whh.mymvvm.adapter.UserAdapter" />
     </data>
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="添加人员"/>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

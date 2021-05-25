@@ -1,4 +1,4 @@
-package com.example.mymvvm.activity;
+package com.whh.mymvvm.activity;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.Observable;
@@ -12,9 +12,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mymvvm.R;
-import com.example.mymvvm.bean.User;
-import com.example.mymvvm.databinding.MainActivityBinding;
+import com.whh.mymvvm.R;
+import com.whh.mymvvm.bean.User;
+import com.whh.mymvvm.databinding.MainActivityBinding;
+import com.whh.mymvvm.real_mvvm.RealMVVMActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * author:wuhuihui 2021.05.19
  * databinding基本使用，数据类型绑定、集合绑定、按键事件绑定
  */
 public class MainActivity extends Activity {
@@ -73,6 +75,10 @@ public class MainActivity extends Activity {
         public boolean onLongClick(View view) {
             startActivity(new Intent(MainActivity.this, ListActivity.class));
             return false;
+        }
+
+        public void mvvmClik(View view) {
+            startActivity(new Intent(MainActivity.this, RealMVVMActivity.class));
         }
     }
 

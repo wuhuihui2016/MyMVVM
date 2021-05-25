@@ -6,40 +6,63 @@
     <data>
         <import type="android.text.TextUtils"/>
         <import type="android.view.View"/>
-        <import type="com.example.mymvvm.bean.User"/>
+        <import type="com.whh.mymvvm.bean.User"/>
         <variable name="item_user" type="User" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{TextUtils.isEmpty(item_user.name) ? User.defultName : item_user.name}" />
-
-        <TextView
-            android:id="@+id/age_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(item_user.age)}"
-            android:visibility="@{item_user.age > 0 ? View.VISIBLE: View.GONE}"
-            tools:ignore="MissingConstraints"/>
-
+        android:background="#E0E0E0"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <!--  注意app:error中一定要用@{}，而非直接@drawable/xxxx，
-        因为这里需要的是一个包含@{}的表达式，否则是无法得到预期效果的-->
+       因为这里需要的是一个包含@{}的表达式，否则是无法得到预期效果的-->
         <ImageView
+            android:id="@+id/iv_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
             android:visibility="@{TextUtils.isEmpty(item_user.photo) ? View.GONE : View.VISIBLE}"
+            app:error="@{@drawable/error}"
             app:imageUrl="@{item_user.photo}"
-            app:placeHolder="@{@drawable/loading}"
-            app:error="@{@drawable/error}" />
+            app:placeHolder="@{@drawable/loading}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{TextUtils.isEmpty(item_user.name) ? User.defultName : item_user.name}"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/age_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(item_user.age)}"
+                android:visibility="@{item_user.age > 0 ? View.VISIBLE: View.GONE}"
+                tools:ignore="MissingConstraints"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/desc_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item_user.description}"
+                android:visibility="@{TextUtils.isEmpty(item_user.description) ? View.GONE: View.VISIBLE}"
+                tools:ignore="MissingConstraints"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 

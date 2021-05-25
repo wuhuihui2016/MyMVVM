@@ -1,4 +1,4 @@
-package com.example.mymvvm.adapter;
+package com.whh.mymvvm.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter;
 import com.bumptech.glide.Glide;
 
 /**
+ * author:wuhuihui 2021.05.19
  * 定义ImageView控件属性
  */
 public class ImageViewAttrAdapter {

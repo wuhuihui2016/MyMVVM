@@ -5,7 +5,7 @@
     <data>
         <!-- 导入引用的外部包 -->
         <import type="android.text.TextUtils" />
-        <import type="com.example.mymvvm.bean.User" />
+        <import type="com.whh.mymvvm.bean.User" />
         <import type="java.util.Map" />
         <import type="java.util.List" />
 
@@ -13,8 +13,8 @@
         <variable name="user" type="User" />
         <variable name="buttonname" type="String" />
         <variable name="listbutton" type="String" />
-        <variable name="eventlistener" type="com.example.mymvvm.activity.MainActivity.EventListener" />
-        <!-- 在""特殊符号需要转义，<为&gt;，>为&gt;，否则报错-->
+        <variable name="eventlistener" type="com.whh.mymvvm.activity.MainActivity.EventListener" />
+        <!-- 在""特殊符号需要转义，<为&lt;，>为&gt;，否则报错-->
         <variable name="list" type="List&lt;String&gt;" />
         <variable name="map" type="Map&lt;String, Integer&gt;" />
         <variable name="index" type="int" />
@@ -24,8 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:orientation="vertical">
 
         <!-- 布局引入1，绑定变量user，使用相同类型变量user，由于<variable name...相同，复用user-->
         <include
@@ -53,6 +52,14 @@
             android:layout_marginTop="10dp"
             android:text="长按查看列表"
             android:onLongClick="@{eventlistener::onLongClick}"/>
+
+        <Button
+            android:id="@+id/MVVM_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="MVVM"
+            android:onClick="@{eventlistener::mvvmClik}"/>
 
         <!-- 集合变量-->
         <TextView

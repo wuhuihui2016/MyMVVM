@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mymvvm">
+    package="com.whh.mymvvm">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ListActivity"/>
+        <activity android:name=".real_mvvm.RealMVVMActivity"/>
     </application>
 
 </manifest>
