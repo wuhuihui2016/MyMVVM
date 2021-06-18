@@ -21,6 +21,11 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * MVVM ViewModel功能：
  * 1、存储数据；2、网络获取数据
+ *
+ * postValue 与 setValue 一样都是用来更新 LiveData 数据的方法：
+ * setValue 只能在主线程调用，同步更新数据
+ * postValue 可在后台线程调用，其内部会切换到主线程调用 setValue
+ * 当连续调用 postValue 时，有可能只会收到最后一次数据更新通知，因为加了读写锁，为了保证线程安全
  */
 public class UserViewModel extends ViewModel {
 

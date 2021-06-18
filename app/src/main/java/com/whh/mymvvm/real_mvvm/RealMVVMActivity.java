@@ -35,6 +35,8 @@ import java.util.List;
  * 可重用性。可以把一些视图的逻辑放在ViewModel里面，让很多View重用这段视图逻辑。
  * 独立开发。开发人员可以专注与业务逻辑和数据的开发(ViewModel)。设计人员可以专注于界面(View)的设计。
  * 可测试性。可以针对ViewModel来对界面(View)进行测试
+ *
+ * AppCompatActivity + LifecycleOwner 配合使用
  */
 public class RealMVVMActivity extends AppCompatActivity implements
         XRecyclerView.LoadingListener, BaseLoadListener<User> {
@@ -77,14 +79,8 @@ public class RealMVVMActivity extends AppCompatActivity implements
      */
     private void initMVVM() {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        LifecycleOwner lifecycleOwner = new LifecycleOwner() {
-            @Override
-            public Lifecycle getLifecycle() {
-                return RealMVVMActivity.super.getLifecycle();
-            }
-        };
         //监听列表数据的更新
-        userViewModel.getUsers().observe(lifecycleOwner, new Observer<List<User>>() {
+        userViewModel.getUsers().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
                 RealMVVMActivity.this.loadSuccess(users);
@@ -93,7 +89,7 @@ public class RealMVVMActivity extends AppCompatActivity implements
         });
 
         //监听数据请求失败原因
-        userViewModel.getErrorMsg().observe(lifecycleOwner, new Observer<String>() {
+        userViewModel.getErrorMsg().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 RealMVVMActivity.this.loadFailure(s);

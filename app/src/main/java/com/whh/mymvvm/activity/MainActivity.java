@@ -16,6 +16,7 @@ import com.whh.mymvvm.R;
 import com.whh.mymvvm.bean.User;
 import com.whh.mymvvm.databinding.MainActivityBinding;
 import com.whh.mymvvm.real_mvvm.RealMVVMActivity;
+import com.whh.mymvvm.utils.ContantUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public class MainActivity extends Activity {
         user = new User(null, 0);
         binding.setUser(user); //给includeUserLayout赋值
         binding.setButtonname("年龄+1");
-        binding.includeItemLayout.setItemUser(new User("itemUser", 5, User.defultPhoto));
+        binding.includeItemLayout.setItemUser(new User("itemUser", 5, ContantUtils.defultPhoto));
         binding.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
@@ -77,8 +78,14 @@ public class MainActivity extends Activity {
             return false;
         }
 
+        //MVVM
         public void mvvmClik(View view) {
             startActivity(new Intent(MainActivity.this, RealMVVMActivity.class));
+        }
+
+        //ROOM
+        public void roomClik(View view) {
+            startActivity(new Intent(MainActivity.this, RoomActivity.class));
         }
     }
 

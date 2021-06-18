@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+        <import type="com.whh.mymvvm.room.Student"/>
+        <import type="com.whh.mymvvm.utils.ContantUtils"/>
+        <variable name="item_student" type="Student" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{item_student.sId > 0 ? View.VISIBLE: View.GONE}"
+            android:text="@{String.valueOf(item_student.sId)}"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@{TextUtils.isEmpty(item_student.name) ? ContantUtils.defultName : item_student.name}"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/age_textView"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(item_student.age)}"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:visibility="@{item_student.age > 0 ? View.VISIBLE: View.GONE}"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+</layout>

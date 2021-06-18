@@ -15,6 +15,7 @@ import com.whh.mymvvm.R;
 import com.whh.mymvvm.adapter.UserAdapter;
 import com.whh.mymvvm.bean.User;
 import com.whh.mymvvm.databinding.ActivityListBinding;
+import com.whh.mymvvm.utils.ContantUtils;
 import com.whh.mymvvm.widget.RecycleViewDivider;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class ListActivity extends Activity {
     private void testData() {
         List<User> users = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            users.add(new User("姓名：" + i, i, User.defultPhoto));
+            users.add(new User("姓名：" + i, i, ContantUtils.defultPhoto));
         }
 
         userAdapter.updateAll(users);

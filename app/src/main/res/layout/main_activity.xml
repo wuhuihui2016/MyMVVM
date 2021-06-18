@@ -61,6 +61,14 @@
             android:text="MVVM"
             android:onClick="@{eventlistener::mvvmClik}"/>
 
+        <Button
+            android:id="@+id/room_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="ROOM"
+            android:onClick="@{eventlistener::roomClik}"/>
+
         <!-- 集合变量-->
         <TextView
             android:layout_width="wrap_content"

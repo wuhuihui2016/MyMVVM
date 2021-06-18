@@ -4,7 +4,7 @@
 
     <data>
         <import type="com.whh.mymvvm.adapter.UserAdapter" />
-        <variable name="adapter" type="com.whh.mymvvm.adapter.UserAdapter" />
+        <variable name="adapter" type="UserAdapter" />
     </data>
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView

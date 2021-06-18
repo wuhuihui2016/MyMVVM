@@ -10,9 +10,6 @@ import androidx.databinding.ObservableInt;
  */
 public class User extends BaseObservable {
 
-    public static String defultName = "defult";
-    public static String defultPhoto = "https://img2.baidu.com/it/u=1373560079,871367259&fm=26&fmt=auto&gp=0.jpg";
-
     public ObservableField<String> name = new ObservableField<>();
     public ObservableInt age = new ObservableInt();
     public ObservableField<String> photo = new ObservableField<>();
