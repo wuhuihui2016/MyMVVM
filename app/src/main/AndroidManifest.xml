@@ -18,9 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ListActivity"/>
-        <activity android:name=".real_mvvm.RealMVVMActivity"/>
-        <activity android:name=".activity.RoomActivity"/>
+        <activity android:name=".activity.ListActivity" />
+        <activity android:name=".activity.RealMVVMActivity" />
+        <activity android:name=".activity.RoomActivity" />
+        <activity android:name=".activity.InjectViewActivity" />
+        <activity android:name=".activity.BindViewActivity" />
+        <activity android:name=".activity.NavigationActivity" />
+        <activity android:name=".activity.ViewPager2Activity" />
     </application>
 
 </manifest>

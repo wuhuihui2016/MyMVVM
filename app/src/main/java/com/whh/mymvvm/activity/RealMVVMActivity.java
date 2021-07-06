@@ -1,12 +1,8 @@
-package com.whh.mymvvm.real_mvvm;
+package com.whh.mymvvm.activity;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,11 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.whh.mymvvm.R;
 import com.whh.mymvvm.adapter.UserAdapter;
+import com.whh.mymvvm.base.BaseActivity;
 import com.whh.mymvvm.base.BaseLoadListener;
 import com.whh.mymvvm.bean.User;
 import com.whh.mymvvm.databinding.ActivityListMvvmBinding;
 import com.whh.mymvvm.utils.DialogUtils;
 import com.whh.mymvvm.utils.ToastUtils;
+import com.whh.mymvvm.viewmodel.UserViewModel;
 import com.whh.mymvvm.widget.RecycleViewDivider;
 
 import java.util.List;
@@ -38,7 +36,7 @@ import java.util.List;
  *
  * AppCompatActivity + LifecycleOwner 配合使用
  */
-public class RealMVVMActivity extends AppCompatActivity implements
+public class RealMVVMActivity extends BaseActivity implements
         XRecyclerView.LoadingListener, BaseLoadListener<User> {
 
     private ActivityListMvvmBinding mvvmBinding;
@@ -51,9 +49,14 @@ public class RealMVVMActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mvvmBinding = DataBindingUtil.setContentView(this, R.layout.activity_list_mvvm);
+        mvvmBinding = (ActivityListMvvmBinding) baseBinding;
         initRecyclerView();
         initMVVM();
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_list_mvvm;
     }
 
     /**

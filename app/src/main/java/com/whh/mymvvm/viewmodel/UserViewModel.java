@@ -1,4 +1,4 @@
-package com.whh.mymvvm.real_mvvm;
+package com.whh.mymvvm.viewmodel;
 
 import android.util.Log;
 
@@ -54,9 +54,9 @@ public class UserViewModel extends ViewModel {
     /**
      * 网络获取数据
      */
-    public void loadData(int currPage) {
+    public void loadData(final int currPage) {
         Log.i(ContantUtils.loadDataTag, "currPage: " + currPage);
-        List<User> userList = new ArrayList<>(); //临时变量，待数据解析完毕，更新给MutableLiveData<List<User>> users
+        final List<User> userList = new ArrayList<>(); //临时变量，待数据解析完毕，更新给MutableLiveData<List<User>> users
         HttpUtils.getUserData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

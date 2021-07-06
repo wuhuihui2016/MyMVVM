@@ -1,15 +1,18 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.whh.mymvvm"
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,13 +32,19 @@ android {
     dataBinding { //打开DataBing
         enabled = true
     }
+    viewBinding {
+        //为了在ViewDataBinding 后获取所在的 View (viewDataBinding.getRoot)
+        enabled true
+    }
 
 }
-
 dependencies {
 
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //Glide网络图加载
@@ -69,6 +78,18 @@ dependencies {
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
+    //添加apt工具后
+    annotationProcessor project(':binder_compiler') //apt处理器，自动生成viewbinder代码
+    implementation project(':binder_annotation') //依赖 mylibrary 注解
 
+    //navigation组件
+    implementation 'androidx.navigation:navigation-fragment:2.3.0'
+    implementation 'androidx.navigation:navigation-ui:2.3.0'
+
+    //多dex打包
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //viewpager2组件
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
 }

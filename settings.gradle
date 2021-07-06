@@ -1,2 +1,6 @@
 rootProject.name = "MyMVVM"
 include ':app'
+include ':binder_annotation'
+include ':binder_compiler'
+include ':proxy'
+include ':thread'

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * @param <B>
  */
 public class BaseViewHolder<B extends ViewDataBinding> extends RecyclerView.ViewHolder {
+
     /**
      * ViewDataBinding
      */

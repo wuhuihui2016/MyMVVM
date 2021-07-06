@@ -11,7 +11,7 @@ import androidx.room.Update;
 import java.util.List;
 
 /**
- * SQL语句封装和接口方法定义：增上改查
+ * SQL语句封装和接口方法定义：增删改查
  * author:wuhuihui 2021.06.17
  */
 @Dao

@@ -23,7 +23,7 @@ Android Studio中是依靠gradle来管理项目的，在创建一个项目时，
 
    3、lambda表达式和规则(lambda表达式是Java8的新特性)：
       在控件中设置属性，可通过@{}来引用
-      三目表达式：@{TextUtils.isEmpty(user.name) ? User.defultName : user.name}
+      三目表达式：@{TextUtils.isEmpty(user.name) ? ContantUtils.defultName : user.name}
       在表达式中，二层字符串引用`` 例如：android:text="@{TextUtils.isEmpty(item_user.name) ? `defult` : item_user.name}" />
       在""特殊符号需要转义，"<"为"&lt;"，">"为"&gt;"，否则报错,例如：《main_activity.xml》
       注意：在xml中即使表达式过长，也不可换行，否则报错：AAPT: error: not well-formed (invalid token).

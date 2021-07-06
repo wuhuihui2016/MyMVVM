@@ -1,18 +1,17 @@
 package com.whh.mymvvm.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.whh.mymvvm.R;
 import com.whh.mymvvm.adapter.UserAdapter;
+import com.whh.mymvvm.base.BaseActivity;
 import com.whh.mymvvm.bean.User;
 import com.whh.mymvvm.databinding.ActivityListBinding;
 import com.whh.mymvvm.utils.ContantUtils;
@@ -25,9 +24,8 @@ import java.util.List;
  * author:wuhuihui 2021.05.19
  * DataBing + RecyclerView + RecyclerView.Adapter
  */
-public class ListActivity extends Activity {
+public class ListActivity extends BaseActivity {
 
-    private Context context;
     private ActivityListBinding activityListBinding;
     private XRecyclerView recyclerView;
     private UserAdapter userAdapter;
@@ -35,14 +33,14 @@ public class ListActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        activityListBinding = DataBindingUtil.setContentView(this, R.layout.activity_list);
-        context = this;
-
+        activityListBinding = (ActivityListBinding) baseBinding;
         initRecyclerView();
-
         testData(); //本地测试数据
+    }
 
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_list;
     }
 
     /**

@@ -5,8 +5,6 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +13,7 @@ import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.whh.mymvvm.R;
 import com.whh.mymvvm.adapter.StudentAdapter;
+import com.whh.mymvvm.base.BaseActivity;
 import com.whh.mymvvm.databinding.ActivityListRoomBinding;
 import com.whh.mymvvm.room.Student;
 import com.whh.mymvvm.room.StudentViewModel;
@@ -28,7 +27,7 @@ import java.util.Random;
  * 所有数据库的操作都需要放在异步线程 最好与RxJava合用
  * author:wuhuihui 2021.06.17
  */
-public class RoomActivity extends AppCompatActivity {
+public class RoomActivity extends BaseActivity {
 
     private ActivityListRoomBinding activityListRoomBinding;
     private XRecyclerView recyclerView;
@@ -42,12 +41,16 @@ public class RoomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityListRoomBinding = DataBindingUtil.setContentView(this, R.layout.activity_list_room);
+        activityListRoomBinding = (ActivityListRoomBinding) baseBinding;
         initRecyclerView();
 
         initData();
     }
 
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_list_room;
+    }
 
     /**
      * 初始化RecyclerView

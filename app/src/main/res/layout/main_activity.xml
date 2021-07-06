@@ -21,74 +21,111 @@
         <variable name="key" type="String" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <!-- 布局引入1，绑定变量user，使用相同类型变量user，由于<variable name...相同，复用user-->
-        <include
-            layout="@layout/layout_include"
-            bind:user="@{user}"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <!-- 绑定点击事件-->
-        <Button
-            android:id="@+id/age_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:onClick="@{eventlistener::ageBtnonClik}"
-            android:text="@{buttonname}" />
+            <!-- 布局引入1，绑定变量user，使用相同类型变量user，由于<variable name...相同，复用user-->
+            <include
+                layout="@layout/layout_include"
+                bind:user="@{user}"/>
 
-        <!-- 布局引入2，如果需要使用相同类型变量User，需要定义不同的<variable name...否则复用以上user-->
-        <include
-            android:id="@+id/include_item_layout"
-            layout="@layout/layout_item"/>
+            <!-- 绑定点击事件-->
+            <Button
+                android:id="@+id/age_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="@{eventlistener::ageBtnonClik}"
+                android:text="@{buttonname}" />
 
-        <Button
-            android:id="@+id/list_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="长按查看列表"
-            android:onLongClick="@{eventlistener::onLongClick}"/>
+            <!-- 布局引入2，如果需要使用相同类型变量User，需要定义不同的<variable name...否则复用以上user-->
+            <include
+                android:id="@+id/include_item_layout"
+                layout="@layout/layout_item"/>
 
-        <Button
-            android:id="@+id/MVVM_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="MVVM"
-            android:onClick="@{eventlistener::mvvmClik}"/>
+            <Button
+                android:id="@+id/list_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="长按查看列表"
+                android:onLongClick="@{eventlistener::onLongClick}"/>
 
-        <Button
-            android:id="@+id/room_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="ROOM"
-            android:onClick="@{eventlistener::roomClik}"/>
+            <Button
+                android:id="@+id/MVVM_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="MVVM"
+                android:onClick="@{eventlistener::mvvmClik}"/>
 
-        <!-- 集合变量-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="集合变量"
-            android:layout_marginTop="20dp"/>
+            <Button
+                android:id="@+id/room_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="ROOM"
+                android:onClick="@{eventlistener::roomClik}"/>
 
-        <TextView
-            android:id="@+id/tv_list_index"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{list[index]}"
-            android:layout_marginTop="10dp"/>
+            <Button
+                android:id="@+id/injectView_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="InjectView"
+                android:onClick="@{eventlistener::injectView}"/>
 
-        <TextView
-            android:id="@+id/tv_map_index"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(map[key])}"
-            android:layout_marginTop="10dp"/>
-    </LinearLayout>
+            <Button
+                android:id="@+id/bindView_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="bindView"
+                android:onClick="@{eventlistener::bindView}"/>
+
+            <Button
+                android:id="@+id/navigation_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="navigation"
+                android:onClick="@{eventlistener::navigation}"/>
+
+            <Button
+                android:id="@+id/viewPager2_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="viewPager2"
+                android:onClick="@{eventlistener::viewPager2}"/>
+
+            <!-- 集合变量-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="集合变量"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_list_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{list[index]}"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_map_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(map[key])}"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+    </ScrollView>
 
 </layout>

@@ -37,7 +37,7 @@ public class StudentViewModel extends AndroidViewModel {
      * 插入数据
      * @param student
      */
-    public void insert(Student student) {
+    public void insert(final Student student) {
         Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<Boolean> e) {
@@ -50,7 +50,7 @@ public class StudentViewModel extends AndroidViewModel {
      * 更新数据
      * @param student
      */
-    public void update(Student student) {
+    public void update(final Student student) {
         Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<Boolean> e) {
@@ -63,7 +63,7 @@ public class StudentViewModel extends AndroidViewModel {
      * 删除数据
      * @param student
      */
-    public void delete(Student student) {
+    public void delete(final Student student) {
         Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<Boolean> e) {
@@ -76,7 +76,7 @@ public class StudentViewModel extends AndroidViewModel {
      * 通过年龄查找
      * @param age
      */
-    public void getStudentByAge(int age) {
+    public void getStudentByAge(final int age) {
         Log.e("whh0617", "getStudentByAge...");
         Observable.create(new ObservableOnSubscribe<List<Student>>() {
             @Override
