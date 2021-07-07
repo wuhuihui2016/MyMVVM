@@ -36,11 +36,13 @@
   当线程释放锁时，将state值-1，当state值减为0时，表示当前线程彻底释放了锁，然后将记录当前持有锁的线程的那个字段设置为null，并唤醒其他线程，使其重新竞争锁。
 
 4、AQS原理(小米京东)
-  (https://github.com/Lord-X/awesome-it-blog/blob/master/java/Java%E9%98%9F%E5%88%97%E5%90%8C%E6%AD%A5%E5%99%A8%EF%BC%88AQS%EF%BC%89%E5%88%B0%E5%BA%95%E6%98%AF%E6%80%8E%E4%B9%88%E4%B8%80%E5%9B%9E%E4%BA%8B.md)
-  队列同步器AbstractQueuedSynchronizer（后面简称AQS）是实现锁和有关同步器的一个基础框架
+   AQS 用来构建锁或者其他同步组件的基础框架，实现了 ReentrantLock、ReentrantReadWriteLock读写锁、CountDownLatch...
+   它使用了一 个 int 成员变量表示同步状态，通过内置的 FIFO 队列来完成资源获取线程的排队 工作。它是 CLH 队列锁的一种变体实现。
+   它可以实现 2 种同步方式：独占式，共享式。
+   AQS 的主要使用方式是继承，子类通过继承 AQS 并实现它的抽象方法来管理同步状态，同步器的设计基于模板方法模式，
+   所以如果要实现我们自己的同步工具类就需要覆盖其中几个可重写的方法，如 tryAcquire、tryReleaseShared 等等。
 
 5、Synchronized的原理以及与ReentrantLock的区别。(360)
-
    synchronized属于独占式悲观锁通过JVM隐式实现，只允许同一时刻只有一个线程操作资源。
       Java中每个对象都隐式包含一个monitor（监视器）对象
       加锁的过程其实就是竞争monitor的过程，当线程进入字节码monitiorenter指令后
@@ -66,15 +68,15 @@
 
 6、Synchronized做了哪些优化(京东) **
   (https://blog.csdn.net/u012957549/article/details/105467237)
-  jdk1.6对锁的实现引入了大量的优化，如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销。
+  jdk1.6对锁的实现引入了大量的优化，如【自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁、逃逸分析】等技术来减少锁操作的开销。
   锁主要存在四中状态，依次是：无锁状态、偏向锁状态、轻量级锁状态、重量级锁状态，他们会随着竞争的激烈而逐渐升级。
   注意锁可以升级不可降级，这种策略是为了提高获得锁和释放锁的效率。
   
-  1.适应自旋锁:为了减少线程状态改变带来的消耗 不停地执行当前线程  
+  1.适应自旋锁:为了减少线程状态改变带来的消耗，不停地执行当前线程  
   2.锁消除：不可能存在共享数据竞争的锁进行消除
-  3.锁粗化：将连续的加锁 精简到只加一次锁
-  4.轻量级锁：无竞争条件下 通过CAS消除同步互斥
-  5.偏向锁：无竞争条件下 消除整个同步互斥，连CAS都不操作。
+  3.锁粗化：将连续的加锁，精简到只加一次锁
+  4.轻量级锁：无竞争条件下,通过CAS消除同步互斥
+  5.偏向锁：无竞争条件下,消除整个同步互斥，连CAS都不操作。
 
 7、Synchronized static与非static锁的区别和范围（小米)
    当synchronized修饰一个static方法时，多线程下，获取的是类锁(即Class本身，注意:不是实例)，
@@ -86,6 +88,7 @@
    【结论】: 类锁和对象锁,一个是类的Class对象的锁,一个是类的实例的锁。
 
 8、volatile能否保证线程安全？在DCL上的作用是什么？ ***
+   不能，仅实现可见性。DCL用于单例模式，解决变量赋值可能未完成就使用的问题？？？
 
 9、volatile和synchronize有什么区别？(B站 小米 京东）
    1.volatile是线程同步的轻量级实现，所以volatile的性能要比synchronize好；
@@ -120,6 +123,11 @@
 
 12、sleep是可中断的么？(小米) ***
     可以响应线程中断
+            try {
+                Thread.sleep(second);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
     
 13、线程生命周期？
     线程的生命周期包含5个阶段，包括：新建New、就绪Runnable、运行Running、阻塞Blocked、销毁Dead。
@@ -143,9 +151,10 @@
    如果此时线程池中的数量大于corePoolSize，缓冲队列workQueue满，并且线程池中的数量等于maximumPoolSize，那么通过 handler所指定的策略来处理此任务。
    当线程池中的线程数量大于 corePoolSize时，如果某线程空闲时间超过keepAliveTime，线程将被终止。这样，线程池可以动态的调整池中的线程数。
  
-   【总结】处理任务判断的优先级为 核心线程corePoolSize、任务队列workQueue、最大线程maximumPoolSize，如果三者都满了，使用handler处理被拒绝的任务。
+   【总结】处理任务判断的优先级为核心线程corePoolSize、任务队列workQueue、最大线程maximumPoolSize，如果三者都满了，使用handler处理被拒绝的任务。
 
 16、有三个线程T1，T2，T3，怎么确保它们按顺序执行？
     思路一：在T1的run()中调用T2.start()，在T2的run()中调用T3.start();
     思路二：t1.start();t1.join(); ==> t2.start();t2.join(); ==> t3.start();t3.join();
+    思路三：使用 SingleThreadExecutor ,保证了线程的顺序执行，其实是在一个线程里，执行了三个任务
     
