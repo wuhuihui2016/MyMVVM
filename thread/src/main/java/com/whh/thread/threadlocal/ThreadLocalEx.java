@@ -7,8 +7,22 @@ import java.util.concurrent.Executors;
 
 /**
  * ThreadLocal 提供变量副本，实现线程隔离，线程不安全，会导致内存泄露问题！
- * init -> set -> get 查看源码 ThreadLocalMap
+ * initialValue() -> set() -> get() -> remove() 查看源码 ThreadLocalMap
+ * 每个线程独有一份 ThreadLocalMap，ThreadLocalMap 使用 ThreadLocal 的弱引用(WeakReference)作为 Key，弱引用的对象在 GC 时会被回收。
+ *
  * 导致内存泄漏的持有链 查看《threadlocal.png》
+ * 当把 threadlocal 变量置为 null 以后，没有任何强引用指向 threadlocal 实例，threadlocal 将会被 gc 回收。
+ * 导致 ThreadLocalMap 中出现 key 为 null 的 Entry，无法访问这些 key 为 null 的 Entry 的 value，
+ * 如果当前线程再迟迟不结束的话，这些 key 为 null 的 Entry 的 value 将一直存在一条强引用链：
+ * Thread Ref -> Thread -> ThreaLocalMap -> Entry -> value，而这块 value 永远不会被访问到了，因而出现内存泄露
+ * 解决办法：不需要使用 threadlocal 变量时，调用其 remove() 方法，清除数据
+ * ThreadLocal 内存泄漏的根源是：由于 ThreadLocalMap 的生命周期跟 Thread 一样长，如果没有手动删除对应 key 就会导致内存泄漏，而不是因为弱引 用
+ *
+ *
+ * JVM 利用设置 ThreadLocalMap 的 Key 为弱引用，来避免内存泄露。
+ * JVM 利用调用 remove、get、set 方法的时候，回收弱引用。
+ * 当 ThreadLocal 存储很多 Key 为 null 的 Entry 的时候，而不再去调用 remove、 get、set 方法，那么将导致内存泄漏。
+ * 使用线程池+ ThreadLocal 时要小心，因为这种情况下，线程是一直在不断的重复运行的，从而也就造成了 value 可能造成累积的情况
  * author:wuhuihui 2021.06.29
  */
 public class ThreadLocalEx {

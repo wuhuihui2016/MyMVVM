@@ -1,11 +1,16 @@
 package com.whh.mymvvm.bean;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * 使用注解+反射+intent传输数据时，Parcelable类型的数据【不不不】需要特殊处理
- * author:wuhuihui 2021.06.23
+ * Parcelable 的使用
+ * writeToParcel：序列化过程
+ * Creator 与 protected ParcelableBean(Parcel in) 配合实现反序列化，转换为对象。
+ * <p>
+ * author:wuhuihui 2021.07.09
  */
 public class ParcelableBean implements Parcelable {
 
@@ -20,7 +25,7 @@ public class ParcelableBean implements Parcelable {
     }
 
     /**
-     * 内部类需使用static
+     * 反序列化
      */
     public static final Creator<ParcelableBean> CREATOR = new Creator<ParcelableBean>() {
         @Override
@@ -39,8 +44,24 @@ public class ParcelableBean implements Parcelable {
         return 0;
     }
 
+    /**
+     * 序列化过程
+     *
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name); //【必须write】
+    }
+
+    public static void main(String[] args) {
+        ParcelableBean bean = new ParcelableBean("whh");
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("ParcelableBean", bean);
+        intent.putExtras(bundle);
+
+        System.out.println("getParcelableExtra==>" + intent.getParcelableExtra("ParcelableBean"));
     }
 }

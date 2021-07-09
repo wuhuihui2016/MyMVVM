@@ -1,5 +1,10 @@
 # Thread 2021.06.29
 
+进程：程序运行资源分配的最小单位。
+分为用户进程和系统进程，凡是用于完成操作系统的各种功能的进程就是系统进程,它们就 是处于运行状态下的操作系统本身,用户进程就是所有由你启动的进程。
+
+线程是 CPU 调度的最小单位,必须依赖于进程而存在
+线程调度分为协同式调度和抢占式调度
 
 什么是线程安全？？？
 【百度】 线程安全的代码通过同步机制，保证各个线程都可以正常且正确的执行，不会出现数据污染等意外情况。
@@ -20,16 +25,22 @@
    Thread 和 Runnable 的关系：
       实质是继承关系。无论 Runnable 还是 Thread，都会 new Thread，然后执行 run 方法。
       用法上，如果有复杂的线程操作需求，那就选择继承 Thread，如果简单的执行一个任务，那就实现 runnable。
-   通过 Callable 和 Future 创建线程，实际也是封装在 Runnable 里执行，Thread 的构造方法里没有 Callable 的参数
-   FutureTask 实现自 RunnableFuture，而 RunnableFuture 继承自 Runnable
+   通过 Callable(属于 java.util.concurrent) 和 Future 创建线程，实际也是封装在 Runnable 里执行，Thread 的构造方法里没有 Callable 的参数
+   FutureTask 实现了 RunnableFuture 接口，而 RunnableFuture 继承了 Runnable 接口和 Future 接口，所以它既可以 作为 Runnable 被线程执行，又可以作为 Future 得到 Callable 的返回值
       
 4、守护线程
+   守护线程线程是一种支持型线程，因为它主要被用作程序中后台调度以及支持性工作，比如垃圾回收线程。
    线程分为用户线程和守护线程，thread.setDaemon(true); 设为守护线程，
       该方法必须在 thread.start() 之前设置，否则异常：IllegalThreadStateException
       即不能把正在运行的线程设为守护线程
-   守护线程中，finally 不一定起作用，而用户线程一定会执行 finally
+   守护线程中，finally 不一定起作用，因此不能依靠 finally 块执行关闭或清理资源的逻辑，而用户线程一定会执行 finally
    当主线程结束，守护线程也会跟着结束，反过来说，任何用户线程还在运行，守护线程就不会终止
    守护线程应该永远不去访问固有资源，如文件、数据库，因为它会在任何时候甚至在一个操作的中间发生中断。
+   
+   守护线程和用户线程的区别？
+      判断虚拟机(JVM)何时离开，Daemon 是为其他线程提供服务，如果全部的 User Thread 已经结束，Daemon 没有可服务的线程，JVM 关闭。 
+      扩展：Thread Dump 打印出来的线程信息，含有 daemon 字样的线程即为守 护进程
+       
 
 5、锁练习：SynchronizedThread.java
    
@@ -41,9 +52,18 @@
    只有running的时候才会获取CPU时间片
    
    死锁：多个操作者争夺多个资源；争夺资源的顺序不对；拿到资源不放手(通俗理解)
-        互斥条件；请求和保持；不剥夺；环路等待
+        互斥条件；请求和保持条件；不剥夺条件；环路等待条件
+   活锁：多个线程想要用一个资源而互相谦让，导致最终都没有取用到该资源；
+   线程饥饿：低优先级的线程，总是拿不到执行时间。
+   
+   如何减少锁的竞争？
+       减少锁的粒度(如果锁保护了多个对象时，增长了锁的力度)；缩小锁的范围；避免多余的锁；锁分段(比如：ConcurrrentHashMap)
         
-6、CAS：compare and swap。原子指令（变量的内存地址，期望的值(旧值)，新值）【乐观锁的实现方式】
+   锁的状态：无锁状态，偏向锁状态，轻量级锁状态和重量级锁状态。
+   
+   如何检查一个线程拥有锁？ Thread.java ==> public static native boolean holdsLock(Object obj);
+   
+6、CAS：compare and swap。原子操作（变量的内存地址，期望的值(旧值)，新值）【乐观锁的实现方式】
   利用现代处理器都支持的CAS的指令，循环该指令，直到成功为止。
   
   AtomicInteger 原子操作，相比于加锁机制，原子变量性能更高。
@@ -52,7 +72,7 @@
   CAS 的不足：
   ABA问题：变量中间被修改过，但又被恢复；
   开销问题：循环次数过多，导致开销大；
-  只能保证一个共享变量的原子操作。此时sync 加锁更适用
+  只能保证一个共享变量的原子操作。此时 sync 加锁更适用
   
   Jdk中相关原子操作类的使用
   更新基本类型类: AtomicBoolean，AtomicInteger，AtomicLong
@@ -73,12 +93,16 @@
    -LinkedTransferQueue:一个由链表结构组成的无界阻塞队列。
    -LinkedBlockingDeque:一个由链表结构组成的双向阻塞队列。
    
-   无界：未限制容量，但是建议使用有界，容量有限。
+   无界：未限制容量，但是建议使用有界，容量有限，有界队列能增加系统的稳定性和预警能力，可以根据需要设大点，比如几千。
    
-8、ReentrantLock 重入锁
-   ReentrantReadWriteLock 读写锁
+8、ReentrantLock 重入锁 同一个线程对于已经获得到的锁，可以多次继续申请到该 锁的使用权
+   ReentrantReadWriteLock 读写锁 能够提供比排它锁更好的并发性和吞吐量
    不论是重入锁还是读写锁，他们都是通过 AQS（AbstractQueuedSynchronizer）来实现的，
    并发包作者（Doug Lea）期望 AQS 作为一个构建所或者实现其它自定义同步组件的基础框架
+   
+   可重入锁（ReentrantLock）的实现？ 
+       线程可以重复进入任何一个它已经拥有的锁所同步着的代码块， synchronized、ReentrantLock 都是可重入的锁。
+       实现上，线程每次获取锁时判定如果获得锁的线程是它自己时，简单将计数器累积即可，每释放一次锁，进行计数器累减，直到计算器归零，表示线程已经彻底释放锁。
 
 ReentrantLock 的两种实现：
   FairSync 公平锁：判断当前是否有元素在等待，顺序执行；

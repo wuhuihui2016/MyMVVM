@@ -11,6 +11,12 @@
    从线程池中取线程执行任务，如果核心线程数已满，放入阻塞队列执行;
    再启动线程执行，如果最大线程数已满，则启动拒绝策略。
    
+   工作机制：
+   1）如果当前运行的线程少于 corePoolSize，则创建新线程来执行任务（注意，执行这一步骤需要获取全局锁）。 
+   2）如果运行的线程等于或多于 corePoolSize，则将任务加入 BlockingQueue。 
+   3）如果无法将任务加入 BlockingQueue（队列已满），则创建新的线程来处理任务。
+   4）如果创建新线程将使当前运行的线程超出 maximumPoolSize，任务将被拒绝，并调用 RejectedExecutionHandler.rejectedExecution()方法。
+   
    public ThreadPoolExecutor(int corePoolSize,
                                  int maximumPoolSize,
                                  long keepAliveTime,

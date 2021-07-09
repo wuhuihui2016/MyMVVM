@@ -1,7 +1,7 @@
 package com.whh.thread.thread;
 
 /**
- * volatile
+ * volatile 最轻量的同步机制，保证内存可见性和禁止指令重排
  * 实现原理
  * 有volatile变量修饰的共享变量进行写操作的时候会使用CPU提供的Lock前缀指令
  *  将当前处理器缓存行的数据写回到系统内存
@@ -12,6 +12,7 @@ package com.whh.thread.thread;
  * 为什么在单个线程写是还要用 volatitle ?  为了在读取时重新从内存中获取
  *
  * volatile 保证有序性，可见性，不能保证原子性
+ *   对任意单个 volatile 变量的读/写具有原子性，但类似于 volatile++ 这种复合操作不具有原子性。
  *
  * volatile 用来修饰变量，保证线程可见，为变量的访问提供了一种无锁机制，即该变量随时会被其他线程修改
  * 被修改后不会重排序，不能保证线程安全

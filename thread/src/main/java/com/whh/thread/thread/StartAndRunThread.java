@@ -17,6 +17,8 @@ import java.util.concurrent.FutureTask;
  * 当线程调用了 start() 方法后，一旦线程被 CPU 调度，处于运行状态，那么线程才会去调用 run() 方法；
  * start() 方法才是 Thread 的启动方法，执行时在该 Thread 内部，此时线程处于就绪状态，通过调用 run() 方法来运行，Run方法运行结束，此线程终止，CPU再调度其它线程。
  * start() 方法才真正实现了多线程运行
+ * start() 只能被调用一次，否则出现异常 IllegalThreadStateException，run() 方法可以重复执行。
+ *
  * <p>
  * author:wuhuihui 2021.06.30
  */

@@ -89,6 +89,7 @@
 
 8、volatile能否保证线程安全？在DCL上的作用是什么？ ***
    不能，仅实现可见性。DCL用于单例模式，解决变量赋值可能未完成就使用的问题？？？
+   见<com.whh.thread.thread.SingleDcl.java>
 
 9、volatile和synchronize有什么区别？(B站 小米 京东）
    1.volatile是线程同步的轻量级实现，所以volatile的性能要比synchronize好；
@@ -110,7 +111,7 @@
    
    线程退出：
        当Thread的run方法执行结束后，线程便会自动退出，生命周期结束，这属于线程正常退出的范畴；
-       不建议使用 stop() ，方法已弃用，同时该方法不安全，不能保证资源及时释放；
+       不建议使用 stop() ，方法已弃用，同时该方法不安全，不能保证资源及时释放，容易导致死锁问题；
        可以使用 interrupt()，使用 isInterrupted() 获取当前中断标志，标志为true 则做线程中断处理
 
 11、sleep 、 wait、 yield 的区别，【wait的线程如何唤醒它】？(东方头条) ****
@@ -157,4 +158,10 @@
     思路一：在T1的run()中调用T2.start()，在T2的run()中调用T3.start();
     思路二：t1.start();t1.join(); ==> t2.start();t2.join(); ==> t3.start();t3.join();
     思路三：使用 SingleThreadExecutor ,保证了线程的顺序执行，其实是在一个线程里，执行了三个任务
+
+17、JMM (Java Memory Model) Java 内存模型
+    线程之间 的共享变量存储在主内存（Main Memory）中，每个线程都有一个私有的本地内存（Local Memory），
+    本地内存中存储了该线程以读/写共享变量的副本。本地内存是 JMM 的一个抽象概念，并不真实存在。
+    它涵盖了缓存、写缓冲区、寄存 器以及其他的硬件和编译器优化
+    带来的问题：可见性问题；竞争问题；数据依赖性；控制依赖性。
     

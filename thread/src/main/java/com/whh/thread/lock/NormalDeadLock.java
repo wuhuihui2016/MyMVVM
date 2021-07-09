@@ -2,12 +2,9 @@ package com.whh.thread.lock;
 
 import com.whh.thread.SleepToos;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
-
 /**
+ * 演示如何解决死锁问题
+ *
  * 死锁的产生
  * 1、多个操作者争夺多个资源；
  * 2、争夺资源的顺序不对；
