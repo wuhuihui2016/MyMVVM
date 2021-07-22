@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.whh.myrxjava"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding { //打开DataBing
+        enabled = true
+    }
+    viewBinding {
+        //为了在ViewDataBinding 后获取所在的 View (viewDataBinding.getRoot)
+        enabled true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //RxJava 3
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
+    //Android 支持 Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+
+    //衔接 Retrofit & RxJava
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    //支持Gson解析
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    //rxbinding2
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+
+    //RxLifecycle3
+    implementation 'com.trello.rxlifecycle3:rxlifecycle:3.1.0'
+    implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.1.0'
+
+}
