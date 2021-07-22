@@ -1,11 +1,13 @@
 package com.whh.others.collection;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
 /**
  * HashMap 练习
+ * 可以存在 null 的 key(仅能存在一个) 和 value
  * <p>
  * author:wuhuihui 2021.07.09
  */
@@ -32,6 +34,7 @@ public class HashMapEx {
         hashMap.put(2, "2222");
         hashMap.put("3", "3333");
         hashMap.put("aa", "aaaa");
+        hashMap.put(null, null);
     }
 
     private static void getMap() {
@@ -40,7 +43,7 @@ public class HashMapEx {
             Map.Entry entry = (Map.Entry) iterator.next();
             Object key = entry.getKey();
             Object value = entry.getValue();
-            System.out.println(key + " = " + value);
+            System.out.println(key + " => " + value);
         }
 
         /**

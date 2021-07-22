@@ -8,6 +8,9 @@ Android Studio中是依靠gradle来管理项目的，在创建一个项目时，
 这些task的作用就是检查并生成相关dataBinding代码，例如dataBindingExportBuildInfoDebug这个task就是用来导出debug模式下的build信息的。
 [作者：唠嗑008](https://www.jianshu.com/p/53925ccb900e)
 
+layout.xml 转成 data binding layout 
+    鼠标移动到布局根目录，alt + enter 打开设置菜单，选择 Convert to data binding layout，自动将布局改成 data binding layout。
+
 =================================<<start Jetpack DataBinding start>>=================================
 一、xml绑定   
    1、import用于导入使用到的类
@@ -24,14 +27,30 @@ Android Studio中是依靠gradle来管理项目的，在创建一个项目时，
    3、lambda表达式和规则(lambda表达式是Java8的新特性)：
       在控件中设置属性，可通过@{}来引用
       三目表达式：@{TextUtils.isEmpty(user.name) ? ContantUtils.defultName : user.name}
-      在表达式中，二层字符串引用`` 例如：android:text="@{TextUtils.isEmpty(item_user.name) ? `defult` : item_user.name}" />
+      在表达式中，二层字符串引用``(输入数字1左边键) 
+          例如：android:text="@{TextUtils.isEmpty(item_user.name) ? `defult` : item_user.name}" />
+               android:text="@{`年龄：` + String.valueOf(item_user.age)}"
       在""特殊符号需要转义，"<"为"&lt;"，">"为"&gt;"，否则报错,例如：《main_activity.xml》
       注意：在xml中即使表达式过长，也不可换行，否则报错：AAPT: error: not well-formed (invalid token).
-     
+      
    4、include关键字
         例如： <include layout="@layout/layout_item" bind:user="@{user}"/>
        使用bind，需导入：xmlns:bind="http://schemas.android.com/apk/res-auto"
        使用tools，需导入：xmlns:tools="http://schemas.android.com/tools"
+       
+   5、支持的运算符
+      数学运算符: + - /%
+      字符串拼接: +
+      逻辑运算符:&& ||
+      二进制:&│^
+      位运算符:>> >>> <<
+      比较: ==> < >= <= ()<
+      instanceof
+      数据类型: character, String, numeric, null
+      类型转换(ClassCast)
+      方法回调(Method calls)
+      数据属性
+      数组:[]
       
 二、java绑定
     1、Binding生成的规则：根据绑定的布局文件名，去除_变驼峰命名方式
@@ -125,7 +144,71 @@ Android Studio中是依靠gradle来管理项目的，在创建一个项目时，
     implementation 'com.jcodecraeer:xrecyclerview:1.3.2'
     //MVVM需要引用的生命周期组件
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
+    
+4、ViewModel 源码解析[https://www.jianshu.com/p/606ae661d025]
+   ViewModel 抽象类，使用 hashMap 存储，源码没使用 ConcurrentHashMap，源码解释：会丢失值和老的api;
+        MVVM ViewModel功能：1、存储数据；2、网络获取数据
+   ViewModelProvider ViewModel的提供者，三个构造方法:
+      ViewModelProvider(@NonNull ViewModelStoreOwner owner) 
+      ViewModelProvider(@NonNull ViewModelStoreOwner owner, @NonNull Factory factory)
+      ViewModelProvider(@NonNull ViewModelStore store, @NonNull Factory factory) 
+        eg：
+            activity 获取 viewModel:
+              UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+              UserViewModel userViewModel = new ViewModelProvider(getViewModelStore(), getDefaultViewModelProviderFactory());
+            fragment 获取 viewModel:
+              UserViewModel userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+      参数解析：
+          ViewModelProvider(this).get(myViewModel.class)：从 mViewModelStore 的 hashMap ,DEFAULT_KEY + ":" + canonicalName 作为key，
+              获取 ViewModel，如果没有获取到，就使用 Factory 创建，然后存入mViewModelStore
+          
+          ViewModelStoreOwner：ViewModel 存储器的拥有者，即Activity、Fragment 是 ViewModelStoreOwner；
+          ViewModelStore：使用 HashMap 存储 viewModel，添加或清空 viewModel；使用activity(fragment).getViewModelStore()获取;
+             getViewModelStore() 从 getLastNonConfigurationInstance 获取 viewModelStore ，如果获取不到，新建一个 viewModelStore，用来存储 viewModel。
+          getDefaultViewModelProviderFactor()：Activity是 HasDefaultViewModelProviderFactory 的实现类, 
+             通过一个SavedStateViewModelFactory来获取ViewModelProvider.Factory。
+   提问：
+      getViewModelStore()方法怎么获取到当前 activity/fragment 的 viewModelStore 的？
+         1、通过 getLastNonConfigurationInstance() 获取，如果获取收不到，将新建一个 viewModelStore 。
+         2、在 ComponentActivity 的 onRetainNonConfigurationInstance() 方法中保存了 viewModelStore，保存在了NonConfigurationInstances。而该getLastNonConfigurationInstance的真正实现是在 Activity.java 类中；而mLastNonConfigurationInstances的赋值是在attach方法中的mLastNonConfigurationInstances = lastNonConfigurationInstances；
+         3、Fragment 中的setRetainInstance(boolean)在设置为 true 时可以是当前的 Fragment 在 Activity 重建时存储下来，所以可以在 Activity 中注入一个 Fragment，这样就可以达到保存 ViewModel 的功能了；
+         4、ViewModel 存在 Activity 的 ViewModelStore 中，多个 Fragment 依赖于同一个 Activity，即实现了ViewModelStore 中的 ViewModel 共享
+      
+      为什么 activty 旋转时所有的 LiveData 会重新执行一次通知？
+      LiveData 是粘性事件，在 activity 销毁后， ViewModel 中的 LiveData 并没有销毁（有具体的值），在 Activity 重新创建后，LiveData 会将该值发送给当前 Activity 界面，达到恢复 Activity 界面状态的效果。
+      
+      ViewModel 如何避免内存泄漏？
+      在ComponentActivity的构造器中可以看出，getLifecycle().addObserver添加了一个观察者观察界面是否销毁，一旦销毁，就清空ViewModelStore中的所有ViewModel。
+   
+databinding 流程 [https://www.jianshu.com/p/740897072da2]
+1、通过布局文件的<layout>标签自动生成相应的 ViewDataBinding(activity_list.xml ==> ActivityListBinding.java)；
+2、调用 DataBindingUtil.setContentView(activity,  layoutId) 获取布局文件对应的 ViewDataBinding；
+     DataBindingUtil.setContentView()方法内部流程：
+         2.1 activity.setContentView(layoutId);
+         2.2 通过activity 获取 decorView => contentView，再去 bindToAddedViews，接着去bind(component, children, layoutId) 
+         2.3 bind方法通过DataBinderMapper(其实是DataBinderMapperImpl) 的 getDataBinder 获取ViewDataBinding；
+         2.4 DataBinderMapperImpl 用来管理 多个 ViewDataBinding 和 layout；
+         2.5 比如生成的 ActivityListBinding.java，解析布局文件，获取布局中有 id 的 view 作为标签，通过调用 mapBindings(...) 遍历布局以获得包含bound、includes、ID Views的数组对象，再依次赋给对应View
+        
+ActivityMainBindingImpl 继承于ActivityMainBinding，而 ActivityMainBinding 继承于ViewDataBinding
    
 =================================<<end   MVVM   end>>=================================
 
+LiveData
+    LiveData 具有生命周期感知能力，可以感知到Activity等的生命周期，也就是说可以在多个 Activity、Fragment、Service 之间共享这些对象，所以可以将其设置为单例。。
+    不会发生内存泄漏,观察者会绑定到 Lifecycle 对象，并在其关联的生命周期遭到销毁后进行自我清理。
+    不会因 Activity 停止而导致崩溃,如果观察者的生命周期处于非活跃状态（如返回栈中的 Activity），则它不会接收任何 LiveData 事件。
+    自动判断生命周期并回调方法,如果观察者的生命周期处于 STARTED 或 RESUMED状态，
+    则 LiveData 会认为该观察者处于活跃状态，就会调用onActive方法，否则，如果 LiveData 对象没有任何活跃观察者时，会调用 onInactive()方法。
+    LiveData更新数据更灵活，不一定是改变数据，而是调用方法（postValue或者setValue）的方式进行UI更新或者其他操作。
+    if (owner.getLifecycle().getCurrentState() == DESTROYED) {  return; }
+   使用 LiveData 的优势
+      1.确保界面符合数据状态；2.不会发生内存泄漏；3.不会因 Activity 停止而导致崩溃；
+      4.不再需要手动处理生命周期；5.数据始终保持最新状态；6.适当的配置更改；7.共享资源
+      
+   postValue和 setValue 的区别？
+     postValue 与 setValue 一样都是用来更新 LiveData 数据的方法：
+     setValue 只能在主线程调用，同步更新数据
+     postValue 可在后台线程调用，其内部会切换到主线程调用 setValue
+     当连续调用 postValue 时，有可能只会收到最后一次数据更新通知，因为加了读写锁，为了保证线程安全
 

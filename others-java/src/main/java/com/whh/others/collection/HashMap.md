@@ -4,6 +4,11 @@
     
 默认初始化容量为16，默认加载因子为0.75，当hashMap集合底层数组的容量达到75%时，开始扩容
 
+HashMap的工作原理
+HashMap基于hashing原理，通过put()和get()方法储存和获取对象。当将键值对传递给put()方法时，它调用键对象的hashCode()方法来计算hashcode，
+然后找到bucket位置来储存Entry对象。当两个对象的hashcode相同时，它们的bucket位置相同，‘碰撞’会发生。
+因为HashMap使用链表存储对象，这个Entry会存储在链表中，当获取对象时，通过键对象的equals()方法找到正确的键值对，然后返回值对象。
+
 HashMap 死循环：
    在多线程环境下，HashMap 并发执行 put 操作时会触发扩容，多线程会使得 HashMap 的 
    Entry 链表形成环形数据结构，此时 Entry 的 next 节点永远不为空，就会产生死循环获取 Entry
@@ -30,6 +35,10 @@ HashMap中 put、get 的实现原理
         如果这个位置上有单向链表，那么它就会拿着K和单向链表上的每一个节点的K进行equals，如果所有equals方法都返回false，则get方法返回null。
         如果其中一个节点的K和参数K进行equals返回true，那么此时该节点的value就是我们要找的value了，get方法最终返回这个要找的value。
   
+如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？
+答：默认的负载因子大小为0.75，也就是说，当一个map填满了75%的bucket时候，和其它集合类(如ArrayList等)一样，
+将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作rehashing，
+因为它调用hash方法找到新的bucket位置。
   
 ConcurrentHashMap：
    由 Segment(分段锁) 数组结构和 HashEntry 数组结构组成
@@ -50,7 +59,7 @@ Hashtable
 HashMap 和 Hashtable 有什么区别？ 
       ①、HashMap 是线程不安全的，Hashtable 是线程安全的； 
       ②、由于线程安全，所以 Hashtable 的效率比不上 HashMap； 
-      ③、HashMap 最多只允许一条记录的键为 null，允许多条记录的值为 null， 而 Hashtable 不允许；
+      ③、HashMap 最多只允许一条记录的键为 null，允许多条记录的值为 null， 而 Hashtable 不允许 key/value 为 null；
       ④、HashMap 默认初始化数组的大小为 16，Hashtable 为 11，前者扩容时，扩大两倍，后者扩大两倍+1；
       ⑤、HashMap 需要重新计算 hash 值，而 Hashtable 直接使用对象的 hashCode
 

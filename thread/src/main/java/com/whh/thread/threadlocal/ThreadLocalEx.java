@@ -23,6 +23,12 @@ import java.util.concurrent.Executors;
  * JVM 利用调用 remove、get、set 方法的时候，回收弱引用。
  * 当 ThreadLocal 存储很多 Key 为 null 的 Entry 的时候，而不再去调用 remove、 get、set 方法，那么将导致内存泄漏。
  * 使用线程池+ ThreadLocal 时要小心，因为这种情况下，线程是一直在不断的重复运行的，从而也就造成了 value 可能造成累积的情况
+ *
+ * 小结
+ * 每个 Thread 都有一个 ThreadLocalMap 里面存放了这个 Thread 的所有 ThreadLocal
+ * 这个 map 会在 ThreadLocal 设置值的时候去懒加载，再将 ThreadLocal 作为 key 要存的值作为 value 一起放入 map
+ * 通过 ThreadLocal 的 hash 值去确定需要 value 放在 Map 的哪个位置
+ *
  * author:wuhuihui 2021.06.29
  */
 public class ThreadLocalEx {

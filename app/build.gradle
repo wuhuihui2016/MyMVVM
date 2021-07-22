@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.whh.mymvvm"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -80,7 +80,7 @@ dependencies {
 
     //添加apt工具后
     annotationProcessor project(':binder_compiler') //apt处理器，自动生成viewbinder代码
-    implementation project(':binder_annotation') //依赖 mylibrary 注解
+    implementation project(':binder_annotation') //依赖 binder_annotation 注解
 
     //navigation组件
     implementation 'androidx.navigation:navigation-fragment:2.3.0'

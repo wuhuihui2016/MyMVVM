@@ -49,7 +49,7 @@
                 android:id="@+id/age_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(item_user.age)}"
+                android:text="@{`年龄：` + String.valueOf(item_user.age)}"
                 android:visibility="@{item_user.age > 0 ? View.VISIBLE: View.GONE}"
                 tools:ignore="MissingConstraints"
                 android:textColor="@color/black"/>

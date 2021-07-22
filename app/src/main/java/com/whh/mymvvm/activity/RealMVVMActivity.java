@@ -11,9 +11,9 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.whh.mymvvm.R;
 import com.whh.mymvvm.adapter.UserAdapter;
 import com.whh.mymvvm.base.BaseActivity;
-import com.whh.mymvvm.base.BaseLoadListener;
 import com.whh.mymvvm.bean.User;
 import com.whh.mymvvm.databinding.ActivityListMvvmBinding;
+import com.whh.mymvvm.interf.DataLoadListener;
 import com.whh.mymvvm.utils.DialogUtils;
 import com.whh.mymvvm.utils.ToastUtils;
 import com.whh.mymvvm.viewmodel.UserViewModel;
@@ -37,7 +37,7 @@ import java.util.List;
  * AppCompatActivity + LifecycleOwner 配合使用
  */
 public class RealMVVMActivity extends BaseActivity implements
-        XRecyclerView.LoadingListener, BaseLoadListener<User> {
+        XRecyclerView.LoadingListener, DataLoadListener<User> {
 
     private ActivityListMvvmBinding mvvmBinding;
     private UserViewModel userViewModel;

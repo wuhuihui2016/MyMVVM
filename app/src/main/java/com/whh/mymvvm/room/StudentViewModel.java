@@ -1,7 +1,6 @@
 package com.whh.mymvvm.room;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;

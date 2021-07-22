@@ -8,11 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 
 import com.whh.mymvvm.R;
 import com.whh.mymvvm.base.BaseFragment;
-import com.whh.mymvvm.utils.ToastUtils;
 
 import org.jetbrains.annotations.NotNull;
 
