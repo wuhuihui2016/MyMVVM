@@ -2,6 +2,7 @@ package com.whh.myrxjava.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -28,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * RxJava线程控制 subscribeOn() & observeOn()
  * [https://blog.csdn.net/jb_home/article/details/112410741]
- *
+ * <p>
  * Schedulers.immediate()             当前线程 = 不指定线程(默认)
  * AndroidSchedulers.mainThread()     Android主线程，可操作UI
  * Schedulers.newThread()                  常规新线程，做耗时等操作
@@ -54,11 +55,37 @@ public class HttpRequestActivity extends RxAppCompatActivity {
         super.onCreate(savedInstanceState);
         DataBindingUtil.setContentView(this, R.layout.activity_rxjava);
 
+        testRxJavaInThread(); //在新线程中查看Observable执行的线程状态
 //        requrestData(); //使用 interval 轮询请求数据
 //        repeatWhenData(); //使用 repeatWhen，delay 等操作符
 //        retryWhenData();
 //        fixRequest(); //混合请求数据(网络请求嵌套回调)
-        checkThread();
+//        checkThread();
+    }
+
+    private void testRxJavaInThread() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Observable.create(new ObservableOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                        emitter.onNext("whh0804");
+                        //in thread is main
+                        Log.e("whh0804", "subscribe...in thread is " + Thread.currentThread().getName());
+                    }
+                }).subscribeOn(AndroidSchedulers.mainThread()) //不受thread的影响
+                        .observeOn(Schedulers.io())
+                        .subscribe(new Consumer<String>() {
+                            @Override
+                            public void accept(String s) throws Exception {
+                                //in thread is RxCachedThreadScheduler-1
+                                Log.e("whh0804", "accept..." + s
+                                        + ", in thread is " + Thread.currentThread().getName());
+                            }
+                        });
+            }
+        }).start();
     }
 
     /**
