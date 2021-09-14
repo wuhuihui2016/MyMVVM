@@ -7,8 +7,8 @@ import java.util.concurrent.locks.ReentrantLock;
  *类说明：演示普通账户的死锁和解决
  */
 public class NormalDeadLock {
-    private static Object LockA = new Object();//第一个锁
-    private static Object LockB = new Object();//第二个锁
+    private static final Object LockA = new Object();//第一个锁
+    private static final Object LockB = new Object();//第二个锁
 
     Lock lock = new  ReentrantLock();
 
@@ -37,7 +37,7 @@ public class NormalDeadLock {
 
     private static class TestThread extends Thread{
 
-        private String name;
+        private final String name;
 
         public TestThread(String name) {
             this.name = name;

@@ -3,7 +3,7 @@ package com.whh.myrxjava.observer;
 // 观察者 实现
 public class UserPerson implements Observer {
 
-    private String name;
+    private final String name;
     private String message;
 
     public UserPerson(String name) {

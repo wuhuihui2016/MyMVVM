@@ -76,7 +76,7 @@ public class InjectViewActivity extends BaseActivity {
 
         //注解方法和注解方法的参数 20210625
         InjectViewUtil.annoMethod("date","20210625");
-        InjectViewUtil.ergodicAnno();; //遍历方法上的所有注解及其参数
+        InjectViewUtil.ergodicAnno();//遍历方法上的所有注解及其参数
         
         /*遍历注解方法和注解方法的参数输出结果：
         System.out: annoMethod...date  20210625

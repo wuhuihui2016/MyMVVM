@@ -217,6 +217,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
      * 新建的、总的Observable 对象 将 新合并的事件序列 发送给观察者（Observer）
      * <p>
      * concatMap() 同 flatMap() 功能，区别在于：拆分 & 重新合并生成的事件序列 的顺序 = 被观察者旧序列生产的顺序
+     * flatMap是无序的，concatMap有序
      */
     private void testFlatMap() {
         Observable.create(new ObservableOnSubscribe<Integer>() {

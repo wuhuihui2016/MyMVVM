@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
  * author:wuhuihui 2021.06.28
  */
 public class IndexViewModel extends ViewModel {
-    private MutableLiveData<Integer> index = new MutableLiveData<>();
+    private final MutableLiveData<Integer> index = new MutableLiveData<>();
 
     public void setIndex(Integer integer) {
         this.index.setValue(integer);

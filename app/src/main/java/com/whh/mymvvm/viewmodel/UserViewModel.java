@@ -21,10 +21,10 @@ import io.reactivex.schedulers.Schedulers;
 public class UserViewModel extends ViewModel {
 
     //数据请求失败返回错误信息
-    private MutableLiveData<String> errorMsg = new MutableLiveData<>();
+    private final MutableLiveData<String> errorMsg = new MutableLiveData<>();
 
     //数据请求成功返回数据列表
-    private MutableLiveData<List<User>> users = new MutableLiveData<>();
+    private final MutableLiveData<List<User>> users = new MutableLiveData<>();
 
     private void setUsers(List<User> users) {
         this.users.setValue(users);

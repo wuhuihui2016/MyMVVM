@@ -14,8 +14,8 @@ import com.whh.thread.SleepToos;
  */
 public class NormalDeadLock {
 
-    private static Object NO13 = new Object();
-    private static Object NO14 = new Object();
+    private static final Object NO13 = new Object();
+    private static final Object NO14 = new Object();
 
     /**
      * A 持有 NO13 后去拿 NO14
@@ -46,7 +46,7 @@ public class NormalDeadLock {
     }
 
     private static class PersonB extends Thread {
-        private String name;
+        private final String name;
 
         public PersonB(String name) {
             this.name = name;

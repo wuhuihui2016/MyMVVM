@@ -12,7 +12,7 @@ import java.util.Map;
 public class MyThreadLocal<T> {
 
     /* 存放变量副本的 map 容器，以Thread 为键，变量副本为 value */
-    private Map<Thread, T> threadTMap = new HashMap<>();
+    private final Map<Thread, T> threadTMap = new HashMap<>();
 
     public synchronized T get() {
         return threadTMap.get(Thread.currentThread());

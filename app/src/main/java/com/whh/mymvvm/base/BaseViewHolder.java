@@ -13,7 +13,7 @@ public class BaseViewHolder<B extends ViewDataBinding> extends RecyclerView.View
     /**
      * ViewDataBinding
      */
-    private B mBinding;
+    private final B mBinding;
 
   
     public BaseViewHolder(B binding) {

@@ -32,7 +32,7 @@ public class RoomActivity extends BaseActivity {
     private ActivityListRoomBinding activityListRoomBinding;
     private XRecyclerView recyclerView;
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     private List<Student> studentList;
     private StudentAdapter studentAdapter;
@@ -79,7 +79,7 @@ public class RoomActivity extends BaseActivity {
      */
     private void initData() {
         //AndroidViewModel与ViewModel获取方法不同
-        //使用同ViewModel方法报错：Caused by: java.lang.InstantiationException: class StudentViewModel has no zero argument constructor
+        //使用同ViewModel方法报错：Caused by: java.lang.InstantiationException: class StudentViewModel has no whh argument constructor
         studentViewModel = ViewModelProvider.AndroidViewModelFactory
                 .getInstance(getApplication()).create(StudentViewModel.class);
         studentViewModel.getAllStucdents().observe(this, new Observer<List<Student>>() {

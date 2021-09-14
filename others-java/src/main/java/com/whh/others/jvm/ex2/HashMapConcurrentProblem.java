@@ -9,8 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 类说明：hashmap死循环问题
  */
 public class HashMapConcurrentProblem extends Thread{
-    private static Map<Integer, Integer> map = new ConcurrentHashMap<>();
-    private static AtomicInteger at = new AtomicInteger(0);
+    private static final Map<Integer, Integer> map = new ConcurrentHashMap<>();
+    private static final AtomicInteger at = new AtomicInteger(0);
 
 
     @Override

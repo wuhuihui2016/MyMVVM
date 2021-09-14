@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity {
         //injectView注解
         public void injectView(View view) {
             Intent intent = new Intent(activity, InjectViewActivity.class);
-            int data[] = {0, 1, 2, 3, 4, 5, 6};
+            int[] data = {0, 1, 2, 3, 4, 5, 6};
             intent.putExtra("name", "whh");
             intent.putExtra("age", 18);
             intent.putExtra("isStudent", true);

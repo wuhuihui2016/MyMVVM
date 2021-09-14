@@ -4,6 +4,82 @@
     <asm skipDebug="false" skipFrames="false" skipCode="false" expandFrames="false" />
     <groovy codeStyle="LEGACY" />
   </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/private/whh_git/MyMVVM/app/src/main/res/drawable/shape_button_circular.xml" value="0.1638888888888889" />
+        <entry key="..\:/private/whh_git/MyMVVM/app/src/main/res/layout/activity_flowlayout.xml" value="0.1405775075987842" />
+        <entry key="..\:/private/whh_git/MyMVVM/app/src/main/res/layout/activity_list.xml" value="0.1405775075987842" />
+        <entry key="..\:/private/whh_git/MyMVVM/app/src/main/res/layout/activity_list_mvvm.xml" value="0.14792299898682879" />
+        <entry key="..\:/private/whh_git/MyMVVM/app/src/main/res/layout/activity_list_room.xml" value="0.24139492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/app/src/main/res/layout/activity_navigation.xml" value="0.14322916666666666" />
+        <entry key="..\:/private/whh_git/MyMVVM/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14322916666666666" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/drawable/card_foreground.xml" value="0.303125" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/drawable/ic_baseline_done_64.xml" value="0.37037037037037035" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/drawable/ic_baseline_power_settings_new_24.xml" value="0.18125" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/drawable/ic_close_eye_24.xml" value="0.16018518518518518" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/drawable/ic_menu_slideshow.xml" value="0.17760416666666667" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/drawable/selector_card_foreground.xml" value="0.303125" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_bottom_app_bar.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_bottom_sheets.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_card_view.xml" value="0.2869791666666667" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_chips.xml" value="0.2484375" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_cloud_music.xml" value="0.36614583333333334" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_coordinator.xml" value="0.21739130434782608" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_coordinator_main.xml" value="0.1765625" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_demo02.xml" value="0.1765625" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_float_action_button.xml" value="0.36614583333333334" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_main.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_material_button.xml" value="0.36614583333333334" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_nest_scroll.xml" value="0.1953125" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_nested_scrolling1.xml" value="0.21739130434782608" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_nested_scrollview.xml" value="0.21739130434782608" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_nested_tradition.xml" value="0.21739130434782608" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_nested_tradition1.xml" value="0.1" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_qq_music.xml" value="0.21739130434782608" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_snack_bar.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_tab.xml" value="0.2869791666666667" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_text_input.xml" value="0.2869791666666667" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_toolbar.xml" value="0.36614583333333334" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/activity_z.xml" value="0.21739130434782608" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/app_bar_main.xml" value="0.21739130434782608" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/fragment_1.xml" value="0.18385416666666668" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/item_layout.xml" value="0.2869791666666667" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/item_recycle.xml" value="0.21739130434782608" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/layout/nav_header_main.xml" value="0.13385416666666666" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/menu/activity_main_drawer.xml" value="0.15625" />
+        <entry key="..\:/private/whh_git/MyMVVM/material/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2203125" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22974358974358974" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/drawable-v24/shape_button_circular.xml" value="0.22974358974358974" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/drawable/ic_action_add.xml" value="0.23055555555555557" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/drawable/shape_button_circular.xml" value="0.15885416666666666" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_clipxxxx.xml" value="0.21195652173913043" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_event.xml" value="0.1405775075987842" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_fish.xml" value="0.20989583333333334" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_flowlayout.xml" value="0.14270833333333333" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_fragment3.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_horizontal.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_main.xml" value="0.1405775075987842" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_myviewpager.xml" value="0.21195652173913043" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_photoview.xml" value="0.18659420289855072" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_recycleview.xml" value="0.21195652173913043" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_reuse_recycleview.xml" value="0.21195652173913043" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_rg.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_simple.xml" value="0.11170212765957446" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_viewpager.xml" value="0.1" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/activity_webview.xml" value="0.1344984802431611" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/fragment_home.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/fragment_message.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/fragment_my.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/fragment_show.xml" value="0.21014492753623187" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/item_base.xml" value="0.21195652173913043" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/item_list.xml" value="0.13177083333333334" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/item_swipe_card.xml" value="0.21195652173913043" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/layout/rv_item_star.xml" value="0.21195652173913043" />
+        <entry key="..\:/private/whh_git/MyMVVM/seriorui/src/main/res/menu/menu_fragment.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

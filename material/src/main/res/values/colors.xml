@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/Blue500</color>
+    <color name="colorPrimaryDark">@color/Blue900</color>
+    <color name="colorAccent">@color/Blue200</color>
+
+
+    <color name="color_31c27c">#31c27c</color>
+    <color name="color_005eaa">#005eaa</color>
+    <color name="color_43d28d">#43d28d</color>
+    <color name="color_512da8">#512da8</color>
+
+
+    <color name="Blue200">#afbfff</color>
+    <color name="Blue500">#5677fc</color>
+    <color name="Blue900">#2a36b1</color>
+    <color name="Green300">#42bd41</color>
+    <color name="Green700">#0a7e07</color>
+    <color name="Grey700">#616161</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+</resources>

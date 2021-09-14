@@ -7,7 +7,7 @@ package com.whh.others.jvm.ex2;
 public class Isalive {
     public Object instance =null;
     //占据内存，便于判断分析GC
-    private byte[] bigSize = new byte[10*1024*1024];
+    private final byte[] bigSize = new byte[10*1024*1024];
 
     public static void main(String[] args) {
         Isalive objectA = new Isalive();//objectA 局部变量表 GCRoots

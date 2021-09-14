@@ -171,7 +171,7 @@ Observable类型给GOF的观察者模式添加了两种缺少的语义，这样�
 
 ```groovy
 // make the call, assign its return value to `returnVal`
-returnVal = someMethod(itsParameters);
+returnVal = someMethod(itsParameters)
 // do something useful with returnVal
 ```
 
@@ -187,11 +187,11 @@ returnVal = someMethod(itsParameters);
 ```groovy
 // defines, but does not invoke, the Subscriber's onNext handler
 // (in this example, the observer is very simple and has only an onNext handler)
-def myOnNext = { it -> do something useful with it };
+def myOnNext = { it -> do something useful with it }
 // defines, but does not invoke, the Observable
-def myObservable = someObservable(itsParameters);
+def myObservable = someObservable(itsParameters)
 // subscribes the Subscriber to the Observable, and invokes the Observable
-myObservable.subscribe(myOnNext);
+myObservable.subscribe(myOnNext)
 // go on about my business
 ```
 
@@ -216,11 +216,11 @@ Subscribe方法用于将观察者连接到Observable，你的观察者需要实�
 下面是一个更完整的例子：
 
 ```groovy
-def myOnNext     = { item -> /* do something useful with item */ };
-def myError      = { throwable -> /* react sensibly to a failed call */ };
-def myComplete   = { /* clean up after the final response */ };
-def myObservable = someMethod(itsParameters);
-myObservable.subscribe(myOnNext, myError, myComplete);
+def myOnNext     = { item -> /* do something useful with item */ }
+def myError      = { throwable -> /* react sensibly to a failed call */ }
+def myComplete   = { /* clean up after the final response */ }
+def myObservable = someMethod(itsParameters)
+myObservable.subscribe(myOnNext, myError, myComplete)
 // go on about my business
 ```
 
@@ -3293,19 +3293,19 @@ The following example code shows two Subscribers subscribing to the same Observa
 **示例 #1:**
 
 ```groovy
-def firstMillion  = Observable.range( 1, 1000000 ).sample(7, java.util.concurrent.TimeUnit.MILLISECONDS);
+def firstMillion  = Observable.range( 1, 1000000 ).sample(7, java.util.concurrent.TimeUnit.MILLISECONDS)
 
 firstMillion.subscribe(
-   { println("Subscriber #1:" + it); },       // onNext
-   { println("Error: " + it.getMessage()); }, // onError
-   { println("Sequence #1 complete"); }       // onCompleted
-);
+   { println("Subscriber #1:" + it) },       // onNext
+   { println("Error: " + it.getMessage()) }, // onError
+   { println("Sequence #1 complete") }       // onCompleted
+)
 
 firstMillion.subscribe(
-    { println("Subscriber #2:" + it); },       // onNext
-    { println("Error: " + it.getMessage()); }, // onError
-    { println("Sequence #2 complete"); }       // onCompleted
-);
+    { println("Subscriber #2:" + it) },       // onNext
+    { println("Error: " + it.getMessage()) }, // onError
+    { println("Sequence #2 complete") }       // onCompleted
+)
 Subscriber #1:211128
 Subscriber #1:411633
 Subscriber #1:629605
@@ -3321,21 +3321,21 @@ Sequence #2 complete
 **示例 #2:**
 
 ```groovy
-def firstMillion  = Observable.range( 1, 1000000 ).sample(7, java.util.concurrent.TimeUnit.MILLISECONDS).publish();
+def firstMillion  = Observable.range( 1, 1000000 ).sample(7, java.util.concurrent.TimeUnit.MILLISECONDS).publish()
 
 firstMillion.subscribe(
-   { println("Subscriber #1:" + it); },       // onNext
-   { println("Error: " + it.getMessage()); }, // onError
-   { println("Sequence #1 complete"); }       // onCompleted
-);
+   { println("Subscriber #1:" + it) },       // onNext
+   { println("Error: " + it.getMessage()) }, // onError
+   { println("Sequence #1 complete") }       // onCompleted
+)
 
 firstMillion.subscribe(
-   { println("Subscriber #2:" + it); },       // onNext
-   { println("Error: " + it.getMessage()); }, // onError
-   { println("Sequence #2 complete"); }       // onCompleted
-);
+   { println("Subscriber #2:" + it) },       // onNext
+   { println("Error: " + it.getMessage()) }, // onError
+   { println("Sequence #2 complete") }       // onCompleted
+)
 
-firstMillion.connect();
+firstMillion.connect()
 Subscriber #2:208683
 Subscriber #1:208683
 Subscriber #2:432509
@@ -3449,7 +3449,7 @@ RxJava的实现为`replay`，它有多个接受不同参数的变体，有的可
 下面的例子向你展示了怎样使用`lift( )`操作符将你的自定义操作符（在这个例子中是 `myOperator`）与标准的RxJava操作符（如`ofType`和`map`）一起使用：
 
 ```groovy
-fooObservable = barObservable.ofType(Integer).map({it*2}).lift(new MyOperator<T>()).map({"transformed by myOperator: " + it});
+fooObservable = barObservable.ofType(Integer).map({it*2}).lift(new MyOperator<T>()).map({"transformed by myOperator: " + it})
 ```
 
 下面这部分向你展示了你的操作符的脚手架形式，以便它能正确的与`lift()`搭配使用。
@@ -3501,7 +3501,7 @@ public class MyOperator<T> implements Operator<T> {
 下面的例子向你展示了怎样使用 `compose( )` 操作符将你得自定义操作符（在这个例子中，是一个名叫`myTransformer`的操作符，它将一个发射整数的Observable转换为发射字符串的）与标准的RxJava操作符（如`ofType`和`map`）一起使用：
 
 ```groovy
-fooObservable = barObservable.ofType(Integer).map({it*2}).compose(new MyTransformer<Integer,String>()).map({"transformed by myOperator: " + it});
+fooObservable = barObservable.ofType(Integer).map({it*2}).compose(new MyTransformer<Integer,String>()).map({"transformed by myOperator: " + it})
 ```
 
 下面这部分向你展示了你的操作符的脚手架形式，以便它能正确的与`compose()`搭配使用。

@@ -23,7 +23,7 @@ import io.reactivex.ObservableOnSubscribe;
  */
 public class StudentViewModel extends AndroidViewModel {
 
-    private StudentDao studentDao;
+    private final StudentDao studentDao;
     private LiveData<List<Student>> students;
 
     public StudentViewModel(@NonNull @NotNull Application application) {
@@ -42,7 +42,7 @@ public class StudentViewModel extends AndroidViewModel {
             public void subscribe(@NonNull ObservableEmitter<Boolean> e) {
                 studentDao.insert(student);
             }
-        }).compose(RxUtils.<Boolean>rxSchedulerHelper()).subscribe();
+        }).compose(RxUtils.rxSchedulerHelper()).subscribe();
     }
 
     /**
@@ -55,7 +55,7 @@ public class StudentViewModel extends AndroidViewModel {
             public void subscribe(@NonNull ObservableEmitter<Boolean> e) {
                 studentDao.update(student);
             }
-        }).compose(RxUtils.<Boolean>rxSchedulerHelper()).subscribe();
+        }).compose(RxUtils.rxSchedulerHelper()).subscribe();
     }
 
     /**
@@ -68,7 +68,7 @@ public class StudentViewModel extends AndroidViewModel {
             public void subscribe(@NonNull ObservableEmitter<Boolean> e) {
                 studentDao.delete(student);
             }
-        }).compose(RxUtils.<Boolean>rxSchedulerHelper()).subscribe();
+        }).compose(RxUtils.rxSchedulerHelper()).subscribe();
     }
 
     /**
@@ -85,7 +85,7 @@ public class StudentViewModel extends AndroidViewModel {
                     Log.e("whh0617", "getStudentByAge...students is null");
                 else Log.e("whh0617", "getStudentByAge..." + students.getValue().size());
             }
-        }).compose(RxUtils.<List<Student>>rxSchedulerHelper()).subscribe();
+        }).compose(RxUtils.rxSchedulerHelper()).subscribe();
     }
 
     /**

@@ -27,7 +27,7 @@ import javax.lang.model.util.Elements;
 @AutoService(Processor.class)
 public class BinderProcessor extends AbstractProcessor {
     private Elements mElementUtils;
-    private HashMap<String, BinderClassCreator> mCreatorMap = new HashMap<>();
+    private final HashMap<String, BinderClassCreator> mCreatorMap = new HashMap<>();
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {

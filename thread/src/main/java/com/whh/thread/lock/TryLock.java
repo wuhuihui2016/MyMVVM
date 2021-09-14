@@ -16,8 +16,8 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class TryLock {
 
-    private static Lock NO13 = new ReentrantLock();
-    private static Lock NO14 = new ReentrantLock();
+    private static final Lock NO13 = new ReentrantLock();
+    private static final Lock NO14 = new ReentrantLock();
 
     /** 先尝试拿 NO13 锁，再尝试拿 NO14 锁，NO14 锁没拿到，连同 NO13 锁释放掉 **/
     private static void first() {
@@ -69,7 +69,7 @@ public class TryLock {
     
 
     private static class TestThread extends Thread {
-        private String name;
+        private final String name;
 
         public TestThread(String name) {
             this.name = name;

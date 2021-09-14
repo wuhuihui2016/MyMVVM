@@ -14,7 +14,7 @@ public class DiffInstance {
 
     private static class InstabceSyn implements Runnable {
 
-        private DiffInstance diffInstance;
+        private final DiffInstance diffInstance;
 
         public InstabceSyn(DiffInstance diffInstance) {
             this.diffInstance = diffInstance;
@@ -29,7 +29,7 @@ public class DiffInstance {
 
     private static class InstabceSyn2 implements Runnable {
 
-        private DiffInstance diffInstance;
+        private final DiffInstance diffInstance;
 
         public InstabceSyn2(DiffInstance diffInstance) {
             this.diffInstance = diffInstance;

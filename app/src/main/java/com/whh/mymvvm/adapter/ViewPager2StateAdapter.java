@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ViewPager2StateAdapter extends FragmentStateAdapter {
 
-    private List<Fragment> fragmentList;
+    private final List<Fragment> fragmentList;
 
     public ViewPager2StateAdapter(FragmentActivity fragmentActivity, List<Fragment> fragmentList) {
         super(fragmentActivity);

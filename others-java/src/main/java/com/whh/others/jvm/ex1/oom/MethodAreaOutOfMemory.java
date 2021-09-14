@@ -29,7 +29,7 @@ public class MethodAreaOutOfMemory {
     }
 
     public static class TestObject {
-        private double a = 34.53;
-        private Integer b = 9999999;
+        private final double a = 34.53;
+        private final Integer b = 9999999;
     }
 }

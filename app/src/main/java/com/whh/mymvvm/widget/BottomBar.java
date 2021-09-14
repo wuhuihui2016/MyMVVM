@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class BottomBar extends View {
 
-    private Context context;
+    private final Context context;
 
     public BottomBar(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -42,20 +42,20 @@ public class BottomBar extends View {
 
     private int containerId;
 
-    private List<Class> fragmentClassList = new ArrayList<>();
-    private List<String> titleList = new ArrayList<>();
-    private List<Integer> iconResBeforeList = new ArrayList<>();
-    private List<Integer> iconResAfterList = new ArrayList<>();
+    private final List<Class> fragmentClassList = new ArrayList<>();
+    private final List<String> titleList = new ArrayList<>();
+    private final List<Integer> iconResBeforeList = new ArrayList<>();
+    private final List<Integer> iconResAfterList = new ArrayList<>();
 
-    private List<Fragment> fragmentList = new ArrayList<>();
+    private final List<Fragment> fragmentList = new ArrayList<>();
 
     private int itemCount;
 
-    private Paint paint = new Paint();
+    private final Paint paint = new Paint();
 
-    private List<Bitmap> iconBitmapBeforeList = new ArrayList<>();
-    private List<Bitmap> iconBitmapAfterList = new ArrayList<>();
-    private List<Rect> iconRectList = new ArrayList<>();
+    private final List<Bitmap> iconBitmapBeforeList = new ArrayList<>();
+    private final List<Bitmap> iconBitmapAfterList = new ArrayList<>();
+    private final List<Rect> iconRectList = new ArrayList<>();
 
     private int currentCheckedIndex;
     private int firstCheckedIndex;
@@ -158,7 +158,7 @@ public class BottomBar extends View {
     }
 
     private int titleBaseLine;
-    private List<Integer> titleXList = new ArrayList<>();
+    private final List<Integer> titleXList = new ArrayList<>();
 
     private int parentItemWidth;
 

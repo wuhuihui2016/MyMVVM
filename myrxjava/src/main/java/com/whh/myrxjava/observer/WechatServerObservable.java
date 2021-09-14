@@ -7,7 +7,7 @@ import java.util.List;
 public class WechatServerObservable implements Observable {
 
     // 容器 存储 多个  观察者
-    private List<Observer> observers = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
     private String message;
 
     @Override

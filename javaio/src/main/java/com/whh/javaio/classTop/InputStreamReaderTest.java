@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 编码获取：getEncoding
@@ -48,7 +49,7 @@ public class InputStreamReaderTest {
 
 	public static void testISRUTF8(InputStream is){
 		try {
-			InputStreamReader inputStreamReader = new InputStreamReader(is,"UTF-8");
+			InputStreamReader inputStreamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
 			BufferedReader gbkBr = new BufferedReader(inputStreamReader);
 			String string;
 			while ((string = gbkBr.readLine()) != null) {

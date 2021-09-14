@@ -18,10 +18,10 @@ import javax.lang.model.element.VariableElement;
  */
 public class BinderClassCreator {
     public static final String ParamName = "view";
-    private TypeElement mTypeElement;//类元素
-    private String mPackageName;
-    private String mBinderClassName;
-    private HashMap<Integer, VariableElement> mVariableElement = new HashMap<>();
+    private final TypeElement mTypeElement;//类元素
+    private final String mPackageName;
+    private final String mBinderClassName;
+    private final HashMap<Integer, VariableElement> mVariableElement = new HashMap<>();
 
     public BinderClassCreator(PackageElement mPackageElement, TypeElement mTypeElement) {
         this.mTypeElement = mTypeElement;

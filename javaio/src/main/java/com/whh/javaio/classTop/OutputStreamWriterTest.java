@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 
 public class OutputStreamWriterTest {
 
@@ -38,7 +39,7 @@ public class OutputStreamWriterTest {
 //		bwGBK.close();
 		System.out.println("oswDef encoding: " + oswGBK.getEncoding());
 
-		OutputStreamWriter oswUTF8 = new OutputStreamWriter(fos, "UTF-8");
+		OutputStreamWriter oswUTF8 = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
 		BufferedWriter bwUTF8 = new BufferedWriter(oswUTF8);
 		bwUTF8.write(STRING + "UTF-8");
 		bwUTF8.newLine();

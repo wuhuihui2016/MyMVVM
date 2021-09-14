@@ -5,7 +5,7 @@ package com.whh.proxy;
  */
 public class HelloProxy implements HelloInterface {
 
-    private HelloInterface helloInterface = new Hello();
+    private final HelloInterface helloInterface = new Hello();
 
     @Override
     public void sayHello() {

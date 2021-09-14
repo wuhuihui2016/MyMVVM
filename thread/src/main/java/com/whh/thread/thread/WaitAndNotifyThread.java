@@ -38,7 +38,7 @@ import com.whh.thread.SleepToos;
  */
 public class WaitAndNotifyThread {
 
-    private static Express express = new Express(0, Express.CITY);
+    private static final Express express = new Express(0, Express.CITY);
 
     /**
      * 检查距离变化线程

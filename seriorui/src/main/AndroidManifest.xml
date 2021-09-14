@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.whh.seriorui">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyMVVM">
+        <activity android:name=".customview.FlowLayoutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--自定义流式布局-->
+<!--        <activity android:name=".customview.FlowLayoutActivity" />-->
+        <!--onTouch和onClick-->
+        <activity android:name=".conflictview.EventActivity" />
+        <!-- 绘制文本实现渐变效果-->
+        <activity android:name=".textdraw.activity.SimpleActivity" />
+        <!--自定义 ViewPager 外部拦截法解决冲突-->
+        <activity android:name=".conflictview.MyViewPagerActivity" />
+        <!--文字测量演示-->
+        <activity android:name=".textdraw.activity.TextMeasureActivity" />
+        <!--ViewPager+文字变色-->
+        <activity android:name=".textdraw.activity.ViewPagerActivity" />
+        <!--过渡绘制演示-->
+        <activity android:name=".textdraw.activity.OverDrawActivity" />
+        <!--锦鲤游动的动画实现-->
+        <activity android:name=".fish.FishActivity" />
+        <!--RecycleView实现吸顶效果-->
+        <activity android:name=".recyclerview.RecycleViewActivity" />
+        <!--RecycleView 缓存复用-->
+        <activity android:name=".cachereuse.ReUseRecycleViewActivity" />
+        <!--viewpager2 使用示例-->
+        <activity android:name=".viewpager2.ViewPager2Activity" />
+        <activity android:name=".viewpager2.horizontal.HorizontalActivity" />
+        <activity android:name=".viewpager2.vertical.VerticalActivity" />
+        <activity android:name=".viewpager2.withRadioGroup.RgActivity" />
+        <activity android:name=".viewpager2.withTab.TabActivity" />
+        <!--PhotoView 使用示例-->
+        <activity android:name=".photoview.PhotoViewActivity"/>
+        <!--WebView 使用示例-->
+        <activity android:name=".webview.WebViewActivity"/>
+
+    </application>
+
+</manifest>

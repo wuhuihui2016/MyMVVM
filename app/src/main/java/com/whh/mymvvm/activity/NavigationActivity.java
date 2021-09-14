@@ -31,10 +31,10 @@ public class NavigationActivity extends BaseActivity {
     private ActivityNavigationBinding activityNavigationBinding;
     private NavController navController; //Fragment切换器
     private BottomNavigationView navigation; //底部菜单控件
-    private List<MenuItem> items = new ArrayList<>(); //下方菜单项的集合
+    private final List<MenuItem> items = new ArrayList<>(); //下方菜单项的集合
 
     //如果跳转到 Activity，从 intent.extras 获取到 bundle，如果是 Fragment，则从 arguments 获取到。
-    private Bundle bundle = new Bundle(); //传输数据
+    private final Bundle bundle = new Bundle(); //传输数据
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -74,9 +74,7 @@ public class NavigationActivity extends BaseActivity {
      */
     private void showItem(MenuItem item) {
         //其他菜单项设为未选中状态，当前菜单为选中
-        if (items.contains(item)) {
-            items.remove(item);
-        }
+        items.remove(item);
         items.add(item); //保证菜单项仅添加一次
         for (MenuItem menuItem : items) {
             menuItem.setChecked(false);

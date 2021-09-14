@@ -46,13 +46,13 @@ public class ViewPager2Activity extends BaseActivity {
 
     private ActivityViewpager2Binding activityViewpager2Binding;
     private ViewPager2 viewPager2;
-    private List<Fragment> fragmentList = new ArrayList<>();
+    private final List<Fragment> fragmentList = new ArrayList<>();
     private ViewPager2StateAdapter adapter;
-    private Bundle bundle = new Bundle();
+    private final Bundle bundle = new Bundle();
     private IndexViewModel viewModel;
     private int index;
     private BottomNavigationView navigation; //菜单控件
-    private List<MenuItem> items = new ArrayList<>(); //菜单项集合
+    private final List<MenuItem> items = new ArrayList<>(); //菜单项集合
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {

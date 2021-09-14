@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
 public class ThreadLocalEx {
 
     //用 ThreadLocal 封装 Integer，并赋初始值
-    private static ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>() {
+    private static final ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>() {
         @Override
         protected Integer initialValue() {
             return 1;
@@ -62,7 +62,7 @@ public class ThreadLocalEx {
     }
 
     static class LocalVariable {
-        private byte[] a = new byte[1024 * 1024 * 10];
+        private final byte[] a = new byte[1024 * 1024 * 10];
     }
 
     static ThreadLocal<LocalVariable> localVariable = new ThreadLocal<>();
